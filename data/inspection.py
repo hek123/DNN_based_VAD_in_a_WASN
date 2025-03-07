@@ -11,7 +11,7 @@ from torch.utils.data import Dataset
 from tqdm import tqdm
 import torchaudio
 
-from torch_framework.config import GlobalConfig
+from config import GlobalConfig
 import utils.utils as utils
 from utils.utils import snr_from_vad, is_binary, Format
 import data.dataset as data
@@ -152,7 +152,7 @@ class DataStatistics(Inspection):
         self.mean, self.var = 0, 0
         self.N = dataset_size
 
-        from torch_framework.models.encoders import STFT
+        from models.encoders import STFT
         self.stft = STFT()
         self.spectrum = torch.zeros(self.stft.num_channels)
 

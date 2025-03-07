@@ -9,7 +9,7 @@ import torch
 from tqdm import tqdm
 import numpy as np
 
-from torch_framework.config import GlobalConfig
+from config import GlobalConfig
 
 
 def test_silaro(k: int = 0):

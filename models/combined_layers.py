@@ -5,7 +5,7 @@ from torch import Tensor
 import torch.nn.functional as f
 from torch.nn import Module, Sequential, ParameterList
 from torch.nn import Identity, LSTM, Linear, RNNBase, ReLU
-from torch_framework.models.custom_layers import Conv1d, TDLayer, TransposeTDLayer, Norm1d, PWTDConv1d, GroupedRNN
+from main.models.custom_layers import Conv1d, TDLayer, TransposeTDLayer, Norm1d, PWTDConv1d, GroupedRNN
 
 from collections import OrderedDict
 

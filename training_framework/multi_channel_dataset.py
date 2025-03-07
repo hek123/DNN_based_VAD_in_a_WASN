@@ -1,5 +1,5 @@
 import math
-from typing import Literal, Final
+from typing import Final
 from pathlib import Path
 
 import numpy as np
@@ -13,11 +13,10 @@ import torchaudio
 import pyroomacoustics as pra
 
 from data.dataset import MyDataset, Sample
-from torch_framework.post_process import ColoredNoise, NoiseGenerator
+from training_framework.post_process import NoiseGenerator
 import Acoustics.signal_processing as sp
-from torch_framework.config import GlobalConfig, DataConfig
+from config import GlobalConfig, DataConfig
 import utils.utils as utils
-from utils.visualization import plot_rirs
 
 
 class MultiChannelData(Dataset):
@@ -259,7 +258,7 @@ def multi_channel_batch(batch: list[Sample]) -> tuple[Tensor, Tensor, dict]:
 
 
 class SavedDataset(Dataset):
-    ROOT: Final = Path("C:\\Users\\hekto\\PycharmProjects\\MyThesis\\code\\data\\simulated_dataset")
+    ROOT: Final = Path("C:\\Users\\hekto\\PycharmProjects\\DNN_based_VAD_in_a_WASN\\data\\simulated_dataset")
 
     def __init__(self, folder: str, d: int = 4):
         self.path = self.ROOT.joinpath(folder)
@@ -285,8 +284,8 @@ class SavedDataset(Dataset):
 # create and save multi-channel dataset
 if __name__ == '__main__':
     from data.dataset import VCTKPreProcessed, MS_SNSD_Noise
-    from torch_framework import config
-    from torch_framework.post_process import ColoredNoise
+    import config
+    from training_framework import ColoredNoise
     from tqdm import tqdm
 
     # SavedDataset("mc-sd")

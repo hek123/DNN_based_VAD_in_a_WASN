@@ -1,8 +1,5 @@
 import math
-import random
-from typing import Callable
 
-import matplotlib.pyplot as plt
 from torch import Tensor
 import torch
 from torch.nn import functional as f
@@ -10,7 +7,7 @@ import scipy.linalg as la
 import numpy as np
 
 from utils.utils import is_probability
-from torch_framework.config import GlobalConfig
+from config import GlobalConfig
 
 
 class NoStatisticsException(Exception):

@@ -3,12 +3,12 @@ from torch import Tensor
 from torch.nn import Module, ParameterList
 from torch.nn import Identity
 from torch.nn import functional as f
-from typing import Final, Literal, Sequence, Callable
+from typing import Final, Sequence, Callable
 
-from torch_framework.models.abstract_models import Encoder
+from models.abstract_models import Encoder
 from utils.utils import isPow2
-from torch_framework.config import GlobalConfig
-from torch_framework.models.custom_layers import Conv1d, InstanceNorm1d
+from config import GlobalConfig
+from models.custom_layers import Conv1d, InstanceNorm1d
 
 
 class STFT(Encoder):

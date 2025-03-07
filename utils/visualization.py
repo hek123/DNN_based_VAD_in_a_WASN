@@ -1,12 +1,12 @@
 import random
-from typing import Sequence, Iterable, Callable
+from typing import Sequence, Callable
 import math
 
 from matplotlib import pyplot as plt
 from torch import Tensor, arange, narrow
 import torch
 
-from torch_framework.config import GlobalConfig
+from config import GlobalConfig
 # import utils.utils as utils
 
 

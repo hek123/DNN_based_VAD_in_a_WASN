@@ -1,13 +1,11 @@
 import matplotlib.pyplot as plt
 import torch
-from torchaudio.transforms import MFCC
 from tqdm import tqdm
 
 from data.dataset import VCTKPreProcessed
-from torch_framework.config import GlobalConfig
-from torch_framework.multi_channel_dataset import MultiChannelData, DataConfig
+from config import GlobalConfig
+from training_framework.multi_channel_dataset import MultiChannelData, DataConfig
 from utils.visualization import plot_vad_on_audo
-from vad_labeling.bayesan import gmm_vad, hmm_vad
 from vad_labeling.labeling import spp2vad
 from vad_labeling.silero import SileroVAD
 from vad_labeling.simpleVAD import EnergyVAD, GMM

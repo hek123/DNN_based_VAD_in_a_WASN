@@ -6,10 +6,10 @@ from torch.nn import functional as f
 
 from abc import ABC, abstractmethod
 
-from torch_framework.models.decoders import FinalLayer
-from torch_framework.models.abstract_models import CoreNetwork, Encoder
+from models.decoders import FinalLayer
+from models.abstract_models import CoreNetwork, Encoder
 import utils.utils as utils
-from torch_framework.multi_channel_dataset import align_labels
+# from training_framework.multi_channel_dataset import align_labels
 
 
 class Model(ABC):

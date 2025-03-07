@@ -1,6 +1,6 @@
 from torch.nn import Module
 
-from torch_framework.config import GlobalConfig
+from config import GlobalConfig
 
 
 class Encoder(Module):

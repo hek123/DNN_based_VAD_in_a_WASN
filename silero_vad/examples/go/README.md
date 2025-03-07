@@ -10,7 +10,7 @@ This is a sample program of how to run speech detection using `silero-vad` from 
 ### Usage
 
 ```sh
-go run ./cmd/main.go test.wav
+go run ./cmd/training_framework.go test.wav
 ```
 
 > **_Note_**

@@ -2,11 +2,10 @@ import torch
 from torch import Tensor
 import numpy as np
 
-from hmmlearn import hmm, vhmm
-from sklearn.mixture import GaussianMixture
-from torchaudio.transforms import MFCC, MelSpectrogram
+from hmmlearn import hmm
+from torchaudio.transforms import MFCC
 
-from torch_framework.config import GlobalConfig
+from config import GlobalConfig
 
 
 class EnergyVAD:

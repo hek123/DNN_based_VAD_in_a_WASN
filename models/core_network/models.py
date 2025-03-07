@@ -6,13 +6,13 @@ import torch.nn.functional as f
 from torch.nn import Module, Sequential, ParameterList
 from torch.nn import Linear, LSTM, MaxPool2d, MaxPool1d, Upsample, \
     LayerNorm, ReLU, Sigmoid
-from torch_framework.models.custom_layers import TDLayer, Conv1d, \
+from models.custom_layers import TDLayer, Conv1d, \
     TimeSeriesNorm, DenseBlock, GatedTSNorm, InstanceNorm1d, \
     Squeeze, AdaptiveNormalization, swappy, squeezy, GroupedRNN
-from torch_framework.models.combined_layers import TDBlock, BLSTM
+from models.combined_layers import TDBlock, BLSTM
 
-from torch_framework.config import GlobalConfig
-from torch_framework.models.main import CoreNetwork
+from config import GlobalConfig
+from models.main import CoreNetwork
 
 
 #############################################

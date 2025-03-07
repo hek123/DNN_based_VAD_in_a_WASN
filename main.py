@@ -1,23 +1,19 @@
 import random
 
 import torch
-from torch.nn import Sequential
 from torch.optim import Adam
-from torch.optim.lr_scheduler import MultiStepLR, LinearLR, ExponentialLR
+from torch.optim.lr_scheduler import MultiStepLR, LinearLR
 from torch.utils.data import DataLoader, random_split
 
 import neptune
 # from ray import tune
-from itertools import product
 
-import data.dataset as data
-import torch_framework.multi_channel_dataset as mdata
-import torch_framework.config as config
-import torch_framework.models.main as m
-import torch_framework.models.encoders as encoders
-import torch_framework.post_process as p
+# import data.dataset as data
+import config as config
+import models.main as m
+import models.encoders as encoders
 
-from torch_framework.train import train_model, TrainConfig
+from training_framework.train import TrainConfig
 
 
 def time_to_num_iterations(time: list[float], train_config: TrainConfig, unit: str = 'sec'):
@@ -35,7 +31,7 @@ def get_dataloader(train_config: TrainConfig, data_config: config.DataConfig, ru
     #     # default: (-5, 15, 0)
     #     dataset.add_localized_noise(data.MS_SNSD_Noise('single source', (0, 30, 10)), p=.95)
     #     # dataset.add_localized_noise(data.NoiseFromDataset(vctk_dataset, (5, 30, 10)))
-    dataset = mdata.SavedDataset('mc-sd')
+    # dataset = mdata.SavedDataset('mc-sd')
 
     # else:
     #     dataset.post_process = [
@@ -70,7 +66,7 @@ if __name__ == '__main__':
         # Create a Neptune run object for logging
         run = neptune.init_run(
             project="hektor/thesis",
-            api_token="eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vYXBwLm5lcHR1bmUuYWkiLCJhcGlfdXJsIjoiaHR0cHM6Ly9hcHAubmVwdHVuZS5haSIsImFwaV9rZXkiOiI5YTczYjZhYS1iZmJiLTRiNmMtOTE1Zi1jNGE1NmExODAwODcifQ==",
+            # api_token=os.environ["NEPTUNE_API_TOKEN"],
             name="BLSTM_baseline-saved",
             tags=["SingleChannel", 'non-causal', "distr_setting"],  # optional,
             source_files=[],
@@ -86,7 +82,8 @@ if __name__ == '__main__':
         train_set, validation_set = get_dataloader(train_config, data_config, run)
 
         # Configure some layers
-        from torch_framework.models.custom_layers import InstanceNorm1d, FilterResponseNorm
+        from models.custom_layers import InstanceNorm1d
+
         InstanceNorm1d.set_mode(use_ema='false', ema_init='reflect')
         # FilterResponseNorm.set_mode(use_ema='false')
 
@@ -100,7 +97,7 @@ if __name__ == '__main__':
         # run['sweep/ConvEnc'] = {'num_layers': num_layers, 'multiplier': float(multiplier), 'linear': linear,
         #                         'num_params': enc_params}
 
-        from torch_framework.models.core_network.baseline import M1FF as Core
+        from models.core_network.baseline import M1FF as Core
 
         core_network = Core(encoder.out_features)
 
@@ -128,14 +125,14 @@ if __name__ == '__main__':
             LinearLR(optimizer, .1, 1., total_iters=10),
         ]
 
-        try:
-            train_model(model, train_set=train_set, validation_set=validation_set,
-                        optimizer=optimizer, schedulers=schedulers,
-                        train_config=train_config, run=run, visualize=False)
-        except KeyboardInterrupt:
-            pass
-        except Exception as e:
-            raise e
+        # try:
+        #     train_model(model, train_set=train_set, validation_set=validation_set,
+        #                 optimizer=optimizer, schedulers=schedulers,
+        #                 train_config=train_config, run=run, visualize=False)
+        # except KeyboardInterrupt:
+        #     pass
+        # except Exception as e:
+        #     raise e
 
         # torch.save(model.core.state_dict(),
-        #            "C:\\Users\\hekto\\PycharmProjects\\MyThesis\\code\\torch_framework\\models\\saved_models\\lstm-nc.pt")
+        #            "C:\\Users\\hekto\\PycharmProjects\\MyThesis\\code\\training_framework\\models\\saved_models\\lstm-nc.pt")

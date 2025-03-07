@@ -1,9 +1,7 @@
 import os
 
-import matplotlib.pyplot as plt
 import numpy as np
 import torch
-from hmmlearn import hmm
 from hmmlearn import vhmm
 from torchaudio.transforms import MFCC
 from tqdm import tqdm
@@ -73,10 +71,9 @@ class BaumWelch:
 
 
 if __name__ == '__main__':
-    from data.dataset import LibriSpeech, LoadVADFromTimestamps, default_path
-    from data.inspection import plot_spectrum
-    from torch_framework.config import default_config
-    from vad_labeling.heuristics import prob_to_vad, timestamps2vad
+    from data.dataset import LibriSpeech, default_path
+    from config import default_config
+    from vad_labeling.heuristics import prob_to_vad
 
     cfg = default_config()
     paths = default_path()

@@ -32,21 +32,7 @@ class DataConfig:
 
 
 class Paths:
-    @staticmethod
-    def __get_root() -> str | None:
-        cwd = os.getcwd()
-        folders = cwd.split(os.sep)
-        folders[0] += os.sep
-        try:
-            idx = folders.index('code')
-            root = os.path.join(*folders[:idx + 1])
-            if os.path.exists(root):
-                return root
-        except ValueError:
-            print(f"'code' is not in {folders}")
-        print("[WARNING]: could not resolve rootpath for the dataset!")
-
-    root = Path(__get_root())
+    root = Path("/")
     data = Path(root, "data")
     labels = Path(data, "preprocessed")
     silero_vad = Path(root, "silero_vad")

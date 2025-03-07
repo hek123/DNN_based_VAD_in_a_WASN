@@ -5,7 +5,6 @@ from sklearn.mixture import GaussianMixture as GMM
 
 from utils.utils import isPow2
 # from vad_labeling import heuristics
-from torch_framework.config import GlobalConfig
 
 
 class SpectralVAD:
@@ -90,8 +89,8 @@ class SpectralVAD:
 
 
 if __name__ == '__main__':
-    from data.dataset import LibriSpeech, Stimuli
-    from torch_framework.config import GlobalConfig
+    from data.dataset import LibriSpeech
+    from config import GlobalConfig
     from vad_labeling import labeling
 
     T = 120

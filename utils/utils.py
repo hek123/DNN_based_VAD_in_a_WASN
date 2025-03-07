@@ -4,11 +4,10 @@ from typing import Callable
 import torch
 from torch import Tensor
 import matplotlib.pyplot as plt
-import torchaudio.transforms as tt
 import torchaudio.functional as tf
 import numpy as np
 
-from torch_framework.config import GlobalConfig
+from config import GlobalConfig
 
 
 def ceildiv(a, b):

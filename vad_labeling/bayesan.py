@@ -9,7 +9,7 @@ from torchaudio.transforms import MFCC
 from tqdm import tqdm
 
 from utils.utils import sequential
-from torch_framework.config import GlobalConfig
+from config import GlobalConfig
 
 
 def delta(x, z: int = 1):

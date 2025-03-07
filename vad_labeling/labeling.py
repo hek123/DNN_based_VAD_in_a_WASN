@@ -7,7 +7,7 @@ from torch import Tensor
 import numpy as np
 from torch.utils.data import DataLoader
 
-from torch_framework.config import Paths, GlobalConfig
+from config import Paths, GlobalConfig
 from data.dataset import MyAudioDataset
 from tqdm import tqdm
 
@@ -229,9 +229,8 @@ def save_labels(dataset: MyAudioDataset | DataLoader, output_folder: str, get_la
 
 
 if __name__ == '__main__':
-    from data.dataset import VCTK, default_collate_fn
+    from data.dataset import VCTK
     from vad_labeling.silero import SileroVAD
-    from utils.utils import sequential
 
     dataset = MyAudioDataset(data=VCTK().file_iterator(), random_offset=False, last_frame='pad')
     # dataloader = DataLoader(dataset, batch_size=1, shuffle=False, num_workers=4, collate_fn=default_collate_fn)

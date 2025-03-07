@@ -6,10 +6,9 @@ from scipy import signal
 import matplotlib.pyplot as plt
 
 import torch
-import torchaudio.transforms as tt
 import torchaudio.functional as tf
 
-from torch_framework.config import GlobalConfig, Paths
+from config import GlobalConfig, Paths
 import data.dataset as data
 
 

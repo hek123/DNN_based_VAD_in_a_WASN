@@ -1,5 +1,4 @@
 import math
-import random
 
 import matplotlib.pyplot as plt
 import torch
@@ -7,18 +6,17 @@ from torch import Tensor
 from torch.utils.data import DataLoader
 from torch.optim import Optimizer
 
-from typing import Callable
-from dataclasses import dataclass, field, InitVar
+from dataclasses import dataclass, InitVar
 from neptune import Run
 from neptune_pytorch import NeptuneLogger
 from neptune.types import File
 
-from torch_framework.config import GlobalConfig
+from config import GlobalConfig
 import utils.utils as utils
 import utils.visualization as plot
-from torch_framework.multi_channel_dataset import align_labels
+from training_framework.multi_channel_dataset import align_labels
 from vad_labeling.labeling import spp2vad
-from torch_framework.models.main import Model
+from models.main import Model
 
 
 def train_model(model: Model, train_set: DataLoader, validation_set: DataLoader,

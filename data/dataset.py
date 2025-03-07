@@ -6,22 +6,20 @@ from abc import ABC, abstractmethod
 from collections.abc import Sequence, Iterable
 from dataclasses import dataclass, field, InitVar
 from pathlib import Path
-from typing import Callable, Union, Generator, Optional, Final
+from typing import Callable, Union, Optional, Final
 
 import torch
 from neptune import Run
 from torch import Tensor
 import torchaudio
-from torch.utils.data import DataLoader, Dataset
+from torch.utils.data import Dataset
 import numpy as np
-import matplotlib.pyplot as plt
 
 from tqdm import tqdm
 
 import utils.utils as utils
-from torch_framework.config import GlobalConfig, Paths
-from torch_framework.post_process import PostProcess, NoiseGenerator
-import torch_framework.post_process as p
+from config import GlobalConfig, Paths
+from training_framework.post_process import PostProcess, NoiseGenerator, snr
 
 
 Sample = tuple[Tensor, Tensor, dict]
@@ -282,7 +280,7 @@ class VCTKPreProcessed(MyDataset):
     def __len__(self):
         return 2*len(self.subjects) if self._mic == 'all' else len(self.subjects)
 
-    def normalize(self) -> p.PostProcess:
+    def normalize(self) -> PostProcess:
         def fn(audio, label, ann, log):
             return audio / self.meta['std'], label
 
@@ -613,7 +611,7 @@ class NoiseFromDataset(NoiseGenerator):
     def __call__(self, size: Sequence[int]) -> Tensor:
         idx = random.randrange(len(self.data))
         audio, vad, _ = self.data[idx]
-        S, _ = p.snr(audio, vad, allow_nan=True)
+        S, _ = snr(audio, vad, allow_nan=True)
         if not math.isnan(S):
             audio /= math.sqrt(S + 1e-8)
         # else:  # Basically noise (on clean data) only -> no signal ...

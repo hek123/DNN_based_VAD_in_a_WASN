@@ -2,7 +2,7 @@ import torch
 import os
 
 from silero_vad.utils_vad import init_jit_model
-from torch_framework.config import GlobalConfig, Paths
+from config import GlobalConfig, Paths
 
 
 class SileroVAD:

@@ -1,14 +1,12 @@
-import torch
 from torch import Tensor
 from torch.nn import Module, ParameterList
 from torch import nn
-from torch.nn import functional as f
 
-from typing import Literal, Callable, Sequence
+from typing import Callable, Sequence
 
-from torch_framework.models.custom_layers import ConvTranspose1d, InstanceNorm1d, Norm1d
+from models.custom_layers import ConvTranspose1d, InstanceNorm1d, Norm1d
 
-from torch_framework.config import GlobalConfig
+from config import GlobalConfig
 from utils.utils import isPow2
 
 

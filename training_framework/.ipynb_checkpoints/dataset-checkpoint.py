@@ -12,7 +12,7 @@ from scipy import signal
 
 from tqdm import tqdm
 from silero_vad.utils_vad import timestamps_to_full_vad, prob_to_vad, timestamps2vad
-from torch_framework.config import GlobalConfig, default_config
+from config import GlobalConfig, default_config
 
 
 @dataclass
