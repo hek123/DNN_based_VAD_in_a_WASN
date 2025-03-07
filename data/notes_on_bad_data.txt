@@ -1,0 +1,7 @@
+Unbalance approx 86% (voice active)
+Duration of audio: 30s - 1500s (average 600s)
+
+35, and many more:
+    not zero mean -> easy fix
+38, 39, 273:
+    is polluted with a huge harmonic, and has an SNR of like 1-2dB
